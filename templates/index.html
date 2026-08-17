@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Carbon Footprint Calculator</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🌱 Carbon Footprint Calculator</h1>
+
+        <p>
+            Calculate your estimated monthly household
+            carbon footprint.
+        </p>
+
+        <form action="/calculate" method="POST">
+
+            <label for="electricity">
+                Electricity Usage (kWh/month)
+            </label>
+
+            <input
+                type="number"
+                id="electricity"
+                name="electricity"
+                min="0"
+                step="0.1"
+                required
+            >
+
+            <label for="transport">
+                Transport Distance (km/month)
+            </label>
+
+            <input
+                type="number"
+                id="transport"
+                name="transport"
+                min="0"
+                step="0.1"
+                required
+            >
+
+            <label for="cooking">
+                Cooking Fuel Usage (kg/month)
+            </label>
+
+            <input
+                type="number"
+                id="cooking"
+                name="cooking"
+                min="0"
+                step="0.1"
+                required
+            >
+
+            <button type="submit">
+                Calculate Footprint
+            </button>
+
+        </form>
+
+        {% if total is defined %}
+
+        <div class="result">
+
+            <h2>Your Estimated Footprint</h2>
+
+            <p>
+                {{ total }} kg CO₂ / month
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
